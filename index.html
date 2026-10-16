@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>English365 - Luyện Tiếng Anh Thực Chiến & Sửa Lỗi Tự Động</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .glass-card {
+      background: rgba(30, 41, 59, 0.85);
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-indigo-500 selection:text-white">
+
+  <!-- Header Section -->
+  <header class="glass-card sticky top-0 z-50 py-3.5 px-4 flex justify-between items-center border-b border-slate-800">
+    <div class="flex items-center space-x-2">
+      <div class="w-8 h-8 bg-gradient-to-tr from-indigo-500 to-sky-400 rounded-xl flex items-center justify-center text-slate-950 text-base font-black shadow-lg shadow-indigo-500/20">
+        🎓
+      </div>
+      <div>
+        <span class="font-extrabold text-sm tracking-tight text-white block leading-none">English <span class="text-indigo-400">365</span></span>
+        <span class="text-[9px] text-slate-400 font-medium">Luyện Tiếng Anh & Sửa Lỗi Tự Động</span>
+      </div>
+    </div>
+    <span class="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-2.5 py-1 rounded-full border border-indigo-500/30">
+      ⚡ Học Qua Thực Hành
+    </span>
+  </header>
+
+  <!-- Main Container -->
+  <main class="max-w-md w-full mx-auto p-3.5 space-y-3.5 flex-grow">
+
+    <!-- Hero Banner -->
+    <div class="relative overflow-hidden rounded-2xl p-4 bg-gradient-to-br from-indigo-900/50 via-slate-900 to-slate-950 border border-indigo-500/30 shadow-2xl">
+      <div class="relative z-10 space-y-1">
+        <span class="inline-block px-2 py-0.5 text-[9px] font-bold bg-indigo-400 text-slate-950 rounded-md uppercase tracking-wider">
+          Cho Học Sinh Cấp 1 • 2 • 3
+        </span>
+        <h1 class="text-base font-extrabold text-white tracking-tight leading-snug">
+          Vừa Làm Vừa Sửa <br/><span class="text-indigo-400">Tự Tin Giao Tiếp & Thi Cử</span>
+        </h1>
+        <p class="text-[11px] text-slate-300 leading-relaxed pt-0.5">
+          Không học vẹt lý thuyết. Chọn cấp độ, thử đặt câu và nhận phản hồi sửa lỗi tức thì!
+        </p>
+      </div>
+    </div>
+
+    <!-- KHU VỰC 1: CHỌN CẤP ĐỘ HỌC SINH -->
+    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2.5">
+      <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
+        <span class="text-indigo-400">1️⃣</span>
+        <span>Chọn Trình Độ Học Sinh:</span>
+      </label>
+
+      <div class="grid grid-cols-3 gap-1.5 text-[10px] font-bold">
+        <button id="btnGrade1" onclick="setGrade(1)" class="py-2 rounded-xl bg-indigo-500 text-slate-950 font-black shadow transition">CẤP 1 (Tiểu Học)</button>
+        <button id="btnGrade2" onclick="setGrade(2)" class="py-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white transition">CẤP 2 (THCS)</button>
+        <button id="btnGrade3" onclick="setGrade(3)" class="py-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white transition">CẤP 3 (THPT)</button>
+      </div>
+    </div>
+
+    <!-- KHU VỰC 2: TỪ VỰNG TRỌNG TÂM (FLASHCARD TRA CỨU NHANH) -->
+    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2.5 border border-indigo-500/20">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+        <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
+          <span class="text-indigo-400">📖</span>
+          <span>Từ Vựng Gợi Ý Hôm Nay:</span>
+        </label>
+        <span class="text-[9px] text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded">Chạm để xem nghĩa</span>
+      </div>
+
+      <div id="vocabList" class="flex flex-wrap gap-2 pt-1">
+        <!-- Load dữ liệu từ vựng theo cấp độ -->
+      </div>
+
+      <!-- Khung hiển thị chi tiết từ vựng khi bấm chọn -->
+      <div id="vocabDetail" class="hidden bg-slate-900/90 p-3 rounded-xl border border-indigo-500/30 space-y-1 text-xs">
+        <div class="flex justify-between items-center">
+          <span id="vWord" class="font-extrabold text-amber-400 text-sm">Word</span>
+          <span id="vIpa" class="text-[10px] text-slate-400 font-mono">/ipa/</span>
+        </div>
+        <p id="vMeaning" class="text-emerald-400 font-bold">Nghĩa tiếng Việt</p>
+        <p id="vExample" class="text-slate-300 italic text-[11px]">Ví dụ: ...</p>
+      </div>
+    </div>
+
+    <!-- KHU VỰC 3: THỬ THÁCH THỰC HÀNH & SỬA LỖI -->
+    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-3 border border-emerald-500/30">
+      <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+        <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
+          <span class="text-emerald-400">✍️</span>
+          <span>Thực Hành Đặt Câu / Trả Lời:</span>
+        </label>
+        <span id="gradeBadge" class="text-[9px] bg-emerald-400 text-slate-950 font-black px-2 py-0.5 rounded">CẤP 1</span>
+      </div>
+
+      <!-- Đề bài tình huống -->
+      <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 space-y-1">
+        <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide block">Tình Huống / Đề Bài:</span>
+        <p id="promptText" class="text-xs text-white font-semibold leading-relaxed">Hãy viết 1 câu giới thiệu tên và tuổi của em bằng tiếng Anh.</p>
+        <p id="hintText" class="text-[10px] text-slate-400 pt-0.5">💡 Gợi ý cấu trúc: My name is... / I am ... years old.</p>
+      </div>
+
+      <!-- Khung nhập câu trả lời của học sinh -->
+      <div class="space-y-2">
+        <textarea id="userInput" rows="3" placeholder="Nhập câu tiếng Anh của em vào đây..."
+                  class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition resize-none"></textarea>
+        
+        <button onclick="checkAnswer()" 
+                class="w-full py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-500 text-slate-950 font-extrabold text-xs shadow-lg shadow-indigo-500/20 hover:opacity-95 active:scale-95 transition">
+          🚀 Sửa Lỗi & Tối Ưu Câu Ngay
+        </button>
+      </div>
+
+      <!-- Kết quả chấm & Sửa lỗi -->
+      <div id="feedbackBox" class="hidden space-y-2 pt-2 border-t border-slate-800">
+        <div class="flex items-center justify-between">
+          <span class="text-xs font-bold text-indigo-400">🔍 Phản Hồi & Đánh Giá:</span>
+          <span id="scoreBadge" class="text-[10px] font-black px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">ĐÚNG CHUẨN</span>
+        </div>
+
+        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-2 text-xs">
+          <div>
+            <span class="text-[10px] text-slate-400 block">Câu gốc của em:</span>
+            <p id="userAnswerDisplay" class="text-slate-200 font-medium">...</p>
+          </div>
+          <div class="border-t border-slate-800/80 pt-1.5">
+            <span class="text-[10px] text-emerald-400 font-bold block">✓ Câu chuẩn / Tự nhiên hơn:</span>
+            <p id="suggestedAnswer" class="text-emerald-300 font-extrabold">...</p>
+          </div>
+          <div class="border-t border-slate-800/80 pt-1.5">
+            <span class="text-[10px] text-amber-400 font-bold block">💡 Giải thích ngữ pháp & Mẹo nhớ:</span>
+            <p id="explainText" class="text-slate-300 text-[11px] leading-relaxed">...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KHU VỰC DỤNG CỤ HỌC TẬP KHUYÊN DÙNG (2 LINK SHOPEE AFFILIATE) -->
+    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2 border border-indigo-500/30">
+      <div class="font-extrabold text-white text-[11px] flex items-center justify-between">
+        <span>📚 Dụng Cụ Hỗ Trợ Học Tiếng Anh Cần Thiết:</span>
+        <span class="text-[9px] text-indigo-400 bg-indigo-500/10 px-1.5 py-0.5 rounded">Gợi Ý Phụ Huynh</span>
+      </div>
+
+      <div class="grid grid-cols-1 gap-2 pt-1">
+        <a href="https://s.shopee.vn/LnxoGaYaQ" target="_blank" rel="noopener noreferrer" onclick="autoTriggerAffiliate()"
+           class="flex items-center justify-between bg-slate-800/80 hover:bg-slate-800 p-2.5 rounded-lg border border-slate-700 transition active:scale-95">
+          <div class="flex items-center space-x-2">
+            <span class="text-base">🎴</span>
+            <div>
+              <div class="text-[11px] font-bold text-white">Sổ Tay Flashcard Học Từ Vựng Thông Minh</div>
+              <div class="text-[9px] text-slate-400">Ghi chép từ mới, bọc nhựa chống nước</div>
+            </div>
+          </div>
+          <span class="text-[10px] bg-indigo-500 text-slate-950 font-black px-2 py-1 rounded shrink-0">Xem Shopee →</span>
+        </a>
+
+        <a href="https://s.shopee.vn/9KimWsLRKD" target="_blank" rel="noopener noreferrer" onclick="autoTriggerAffiliate()"
+           class="flex items-center justify-between bg-slate-800/80 hover:bg-slate-800 p-2.5 rounded-lg border border-slate-700 transition active:scale-95">
+          <div class="flex items-center space-x-2">
+            <span class="text-base">🎧</span>
+            <div>
+              <div class="text-[11px] font-bold text-white">Tai Nghe Luyện Nghe Nói Có Micro Cho Bé</div>
+              <div class="text-[9px] text-slate-400">Âm thanh rõ ràng, thu âm chuẩn phát âm</div>
+            </div>
+          </div>
+          <span class="text-[10px] bg-sky-400 text-slate-950 font-black px-2 py-1 rounded shrink-0">Xem Shopee →</span>
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="text-center py-3 text-[10px] text-slate-500 glass-card border-t border-slate-900">
+    © 2026 English365. Cẩm nang luyện Tiếng Anh thực chiến qua thực hành & sửa lỗi.
+  </footer>
+
+  <script>
+    let currentGrade = 1;
+
+    // 2 LINK AFFILIATE DÙNG BẮT MỞ TỰ ĐỘNG
+    const affLinks = [
+      "https://s.shopee.vn/LnxoGaYaQ",
+      "https://s.shopee.vn/9KimWsLRKD"
+    ];
+
+    function autoTriggerAffiliate() {
+      const hasOpened = localStorage.getItem('eng365_auto_aff');
+      if (!hasOpened) {
+        const randomLink = affLinks[Math.floor(Math.random() * affLinks.length)];
+        window.open(randomLink, '_blank');
+        localStorage.setItem('eng365_auto_aff', 'true');
+      }
+    }
+
+    // DỮ LIỆU CÁC CẤP ĐỘ
+    const gradeData = {
+      1: {
+        badge: "CẤP 1 (Tiểu Học)",
+        prompt: "Hãy đặt câu tiếng Anh giới thiệu tên và tuổi của em.",
+        hint: "💡 Gợi ý: My name is [Tên] and I am [Số tuổi] years old.",
+        vocabs: [
+          { word: "Family", ipa: "/ˈfæm.əl.i/", meaning: "Gia đình", example: "I love my family." },
+          { word: "School", ipa: "/skuːl/", meaning: "Trường học", example: "I go to school every day." },
+          { word: "Friend", ipa: "/frend/", meaning: "Bạn bè", example: "He is my best friend." },
+          { word: "Hobby", ipa: "/ˈhɒb.i/", meaning: "Sở thích", example: "My hobby is reading books." }
+        ]
+      },
+      2: {
+        badge: "CẤP 2 (THCS)",
+        prompt: "Hãy viết 1 câu bằng tiếng Anh hỏi đường đến bưu điện hoặc siêu thị gần nhất.",
+        hint: "💡 Gợi ý: Excuse me, could you tell me the way to...? / How can I get to...?",
+        vocabs: [
+          { word: "Improve", ipa: "/ɪmˈpruːv/", meaning: "Cải thiện, nâng cao", example: "I want to improve my English." },
+          { word: "Direction", ipa: "/daɪˈrek.ʃən/", meaning: "Phương hướng, đường đi", example: "Can you show me the direction?" },
+          { word: "Environment", ipa: "/ɪnˈvaɪ.rən.mənt/", meaning: "Môi trường", example: "We should protect the environment." },
+          { word: "Schedule", ipa: "/ˈʃed.juːl/", meaning: "Thời khóa biểu, lịch trình", example: "Check your class schedule." }
+        ]
+      },
+      3: {
+        badge: "CẤP 3 (THPT)",
+        prompt: "Hãy viết 1 câu diễn đạt ý kiến: 'Việc tự học mỗi ngày giúp học sinh rèn luyện tính kỷ luật'.",
+        hint: "💡 Gợi ý: Self-study / Develop self-discipline / Daily routine...",
+        vocabs: [
+          { word: "Discipline", ipa: "/ˈdɪs.ə.plɪn/", meaning: "Kỷ luật", example: "Self-discipline is essential for success." },
+          { word: "Independence", ipa: "/ˌɪn.dɪˈpen.dəns/", meaning: "Sự tự lập", example: "Learning alone builds independence." },
+          { word: "Perspective", ipa: "/pəˈspek.tɪv/", meaning: "Góc nhìn, quan điểm", example: "From my perspective, hard work pays off." },
+          { word: "Opportunity", ipa: "/ˌɒp.əˈtʃuː.nə.ti/", meaning: "Cơ hội", example: "English opens up new opportunities." }
+        ]
+      }
+    };
+
+    function setGrade(g) {
+      autoTriggerAffiliate();
+      currentGrade = g;
+
+      for (let i = 1; i <= 3; i++) {
+        let btn = document.getElementById(`btnGrade${i}`);
+        if (i === g) {
+          btn.className = "py-2 rounded-xl bg-indigo-500 text-slate-950 font-black shadow transition";
+        } else {
+          btn.className = "py-2 rounded-xl bg-slate-900 text-slate-400 hover:text-white transition";
+        }
+      }
+
+      const data = gradeData[g];
+      document.getElementById('gradeBadge').innerText = data.badge;
+      document.getElementById('promptText').innerText = data.prompt;
+      document.getElementById('hintText').innerText = data.hint;
+      document.getElementById('userInput').value = "";
+      document.getElementById('feedbackBox').classList.add('hidden');
+      document.getElementById('vocabDetail').classList.add('hidden');
+
+      // Load danh sách từ vựng
+      let vocabHtml = data.vocabs.map((v, idx) => `
+        <button onclick="showVocabDetail(${g}, ${idx})" 
+                class="bg-slate-900 hover:bg-slate-800 text-indigo-300 font-bold px-2.5 py-1 rounded-lg border border-slate-700 text-[11px] transition active:scale-95">
+          ${v.word}
+        </button>
+      `).join('');
+      document.getElementById('vocabList').innerHTML = vocabHtml;
+    }
+
+    function showVocabDetail(g, idx) {
+      autoTriggerAffiliate();
+      const v = gradeData[g].vocabs[idx];
+      document.getElementById('vWord').innerText = v.word;
+      document.getElementById('vIpa').innerText = v.ipa;
+      document.getElementById('vMeaning').innerText = "👉 " + v.meaning;
+      document.getElementById('vExample').innerText = `💬 "${v.example}"`;
+      document.getElementById('vocabDetail').classList.remove('hidden');
+    }
+
+    function checkAnswer() {
+      autoTriggerAffiliate();
+      const text = document.getElementById('userInput').value.trim();
+      const feedbackBox = document.getElementById('feedbackBox');
+
+      if (!text) {
+        alert("Em hãy nhập câu trả lời vào khung trước khi bấm sửa lỗi nhé!");
+        return;
+      }
+
+      document.getElementById('userAnswerDisplay').innerText = `"${text}"`;
+
+      // Giả lập logic chấm bài & sửa lỗi thông minh
+      if (currentGrade === 1) {
+        document.getElementById('suggestedAnswer').innerText = "My name is Nam and I am 10 years old.";
+        document.getElementById('explainText').innerText = "✓ Câu của em cơ bản đã tốt! Nhớ viết hoa chữ cái đầu tên riêng và từ 'I' (tôi) nhé.";
+      } else if (currentGrade === 2) {
+        document.getElementById('suggestedAnswer').innerText = "Excuse me, could you tell me the way to the nearest post office?";
+        document.getElementById('explainText').innerText = "✓ Dùng 'could you' sẽ giúp câu hỏi đường lịch sự và tự nhiên hơn rất nhiều so with dùng 'where is'.";
+      } else {
+        document.getElementById('suggestedAnswer').innerText = "Daily self-study plays a crucial role in developing students' self-discipline.";
+        document.getElementById('explainText').innerText = "✓ Cấu trúc 'play a crucial role in V-ing' giúp câu văn luận cấp 3 đạt điểm cao hơn trong các bài thi.";
+      }
+
+      feedbackBox.classList.remove('hidden');
+      feedbackBox.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    // Khởi tạo mặc định Cấp 1
+    setGrade(1);
+  </script>
+
+</body>
+</html>
