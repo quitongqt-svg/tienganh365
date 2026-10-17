@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>English365 - Luyện Tiếng Anh Thực Chiến & Sửa Lỗi Tự Động</title>
+  <title>English365 - Luyện Tiếng Anh Thực Chiến & Trò Chuyện Tương Tác</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
@@ -25,11 +25,11 @@
       </div>
       <div>
         <span class="font-extrabold text-sm tracking-tight text-white block leading-none">English <span class="text-indigo-400">365</span></span>
-        <span class="text-[9px] text-slate-400 font-medium">Luyện Tiếng Anh & Sửa Lỗi Tự Động</span>
+        <span class="text-[9px] text-slate-400 font-medium">Luyện Tiếng Anh & Trò Chuyện Tương Tác</span>
       </div>
     </div>
     <span class="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-2.5 py-1 rounded-full border border-indigo-500/30">
-      ⚡ Học Qua Thực Hành
+      ⚡ Học Qua Trò Chuyện
     </span>
   </header>
 
@@ -43,10 +43,10 @@
           Cho Học Sinh Cấp 1 • 2 • 3
         </span>
         <h1 class="text-base font-extrabold text-white tracking-tight leading-snug">
-          Vừa Làm Vừa Sửa <br/><span class="text-indigo-400">Tự Tin Giao Tiếp & Thi Cử</span>
+          Nói Chuyện Với Bạn Máy <br/><span class="text-indigo-400">Trả Lời & Sửa Lỗi Tự Động</span>
         </h1>
         <p class="text-[11px] text-slate-300 leading-relaxed pt-0.5">
-          Không học vẹt lý thuyết. Chọn cấp độ, thử đặt câu và nhận phản hồi sửa lỗi chi tiết!
+          Nhắn tin tiếng Anh thoải mái. Bạn máy sẽ trả lời và uốn nắn từng câu chữ cho em!
         </p>
       </div>
     </div>
@@ -65,21 +65,20 @@
       </div>
     </div>
 
-    <!-- KHU VỰC 2: TỪ VỰNG TRỌNG TÂM (CHẠM ĐỂ XEM NGHĨA & CÁCH ĐỌC) -->
+    <!-- KHU VỰC 2: TỪ VỰNG TRỌNG TÂM -->
     <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2.5 border border-indigo-500/20">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
         <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
           <span class="text-indigo-400">📖</span>
-          <span>Từ VỰNG GỢI Ý ĐÚNG CHỦ ĐỀ:</span>
+          <span>TỪ VỰNG GỢI Ý HÔM NAY:</span>
         </label>
         <span class="text-[9px] text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded">Chạm để xem nghĩa</span>
       </div>
 
       <div id="vocabList" class="flex flex-wrap gap-2 pt-1">
-        <!-- Tự động nạp từ vựng đúng bài tập -->
+        <!-- Nạp từ vựng tự động -->
       </div>
 
-      <!-- Khung hiển thị chi tiết từ vựng khi chạm -->
       <div id="vocabDetail" class="hidden bg-slate-900/95 p-3 rounded-xl border border-indigo-500/40 space-y-1.5 text-xs">
         <div class="flex justify-between items-center border-b border-slate-800 pb-1">
           <span id="vWord" class="font-extrabold text-amber-400 text-sm">Word</span>
@@ -91,66 +90,39 @@
       </div>
     </div>
 
-    <!-- KHU VỰC 3: THỰC HÀNH VỪA LÀM VỪA SỬA -->
-    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-3 border border-emerald-500/30">
+    <!-- KHU VỰC 3: GIAO DIỆN TRÒ CHUYỆN & SỬA LỖI TRỰC TIẾP (CHAT INTERACTIVE) -->
+    <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-3 border border-sky-500/40">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
-        <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
-          <span class="text-emerald-400">✍️</span>
-          <span>Thực Hành Đặt Câu / Trả Lời:</span>
-        </label>
+        <div class="flex items-center space-x-2">
+          <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          <label class="text-xs font-bold text-slate-200 uppercase tracking-wider">
+            💬 Trò Chuyện & Sửa Lỗi Trực Tiếp
+          </label>
+        </div>
         <span id="gradeBadge" class="text-[9px] bg-emerald-400 text-slate-950 font-black px-2 py-0.5 rounded">CẤP 1</span>
       </div>
 
-      <!-- Đề bài tình huống -->
-      <div class="bg-slate-900/90 p-3 rounded-xl border border-slate-800 space-y-1">
-        <span class="text-[10px] font-bold text-amber-400 uppercase tracking-wide block">Tình Huống / Đề Bài:</span>
-        <p id="promptText" class="text-xs text-white font-semibold leading-relaxed">Hãy đặt câu tiếng Anh giới thiệu tên và tuổi của em.</p>
-        <p id="hintText" class="text-[10px] text-slate-400 pt-0.5">💡 Cấu trúc: My name is [Tên] and I am [Tuổi] years old.</p>
+      <!-- KHUNG CHAT HIỂN THỊ TIN NHẮN -->
+      <div id="chatBox" class="space-y-3 max-h-80 overflow-y-auto p-1 pr-1">
+        <!-- Tin nhắn mở đầu của Bạn Đồng Hành -->
+        <div class="flex items-start space-x-2">
+          <div class="w-7 h-7 rounded-xl bg-indigo-500 flex items-center justify-center text-xs font-bold shrink-0">🤖</div>
+          <div class="bg-slate-900 p-3 rounded-2xl rounded-tl-none border border-slate-800 text-xs space-y-1 max-w-[85%]">
+            <p class="text-white font-semibold">Hello! I am your English friend. What is your name and how old are you?</p>
+            <p class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1">💬 <i>Chào em! Bạn là người bạn Tiếng Anh của em đây. Em tên gì và bao nhiêu tuổi rồi?</i></p>
+          </div>
+        </div>
       </div>
 
-      <!-- Khung nhập câu trả lời -->
-      <div class="space-y-2">
-        <textarea id="userInput" rows="3" placeholder="Nhập câu tiếng Anh của em vào đây..."
-                  class="w-full bg-slate-900/90 border border-slate-700 rounded-xl p-3 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition resize-none">My name is Quí and eight years old</textarea>
-        
-        <button onclick="checkAnswer()" 
-                class="w-full py-2.5 rounded-xl bg-gradient-to-r from-indigo-500 to-sky-500 text-slate-950 font-extrabold text-xs shadow-lg shadow-indigo-500/20 hover:opacity-95 active:scale-95 transition">
-          🚀 Sửa Lỗi & Tối Ưu Câu Ngay
+      <!-- KHUNG NHẬP TIN NHẮN TRÒ CHUYỆN -->
+      <div class="pt-1 flex items-center space-x-2">
+        <input id="chatInput" type="text" placeholder="Gõ câu trả lời tiếng Anh vào đây..."
+               onkeypress="handleKeyPress(event)"
+               class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition" />
+        <button onclick="sendChatMessage()" 
+                class="bg-indigo-500 hover:bg-indigo-400 text-slate-950 px-3.5 py-2.5 rounded-xl font-extrabold text-xs shadow-lg transition active:scale-95 shrink-0">
+          Gửi 🚀
         </button>
-      </div>
-
-      <!-- Kết quả chấm & Sửa lỗi chi tiết -->
-      <div id="feedbackBox" class="hidden space-y-2.5 pt-2 border-t border-slate-800">
-        <div class="flex items-center justify-between">
-          <span class="text-xs font-bold text-indigo-400">🔍 Phản Hồi & Đánh Giá Chi Tiết:</span>
-          <span id="scoreBadge" class="text-[10px] font-black px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">CẦN SỬA LỖI NHỎ</span>
-        </div>
-
-        <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 space-y-2.5 text-xs">
-          <div>
-            <span class="text-[10px] text-slate-400 block">Câu gốc của em:</span>
-            <p id="userAnswerDisplay" class="text-rose-300 font-medium italic">...</p>
-          </div>
-
-          <div class="border-t border-slate-800/80 pt-2">
-            <span class="text-[10px] text-emerald-400 font-bold block">✓ Câu chuẩn xác & Tự nhiên nhất:</span>
-            <p id="suggestedAnswer" class="text-emerald-300 font-extrabold text-sm">...</p>
-          </div>
-
-          <!-- CÚ PHÁP VIỆT HOÁ -->
-          <div class="border-t border-slate-800/80 pt-2 bg-slate-950/60 p-2.5 rounded-lg border border-slate-800">
-            <span class="text-[10px] text-sky-400 font-bold block mb-1">🗣️ Cú Pháp & Cách Đọc Chuẩn:</span>
-            <p id="phoneticRead" class="text-amber-300 font-bold text-[11px]">🔊 Đọc: ...</p>
-          </div>
-
-          <!-- PHÂN TÍCH VÌ SAO SAI & CÁCH DÙNG IS / AM / TO BE -->
-          <div class="border-t border-slate-800/80 pt-2 space-y-1.5">
-            <span class="text-[10px] text-amber-400 font-bold block">💡 Giải Thích Cú Pháp & Quy Tắc Dễ Nhớ:</span>
-            <div id="explainText" class="text-slate-300 text-[11px] leading-relaxed space-y-1">
-              <!-- Nội dung phân tích động -->
-            </div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -191,7 +163,7 @@
   </main>
 
   <footer class="text-center py-3 text-[10px] text-slate-500 glass-card border-t border-slate-900">
-    © 2026 English365. Cẩm nang luyện Tiếng Anh thực chiến qua thực hành & sửa lỗi.
+    © 2026 English365. Cẩm nang luyện Tiếng Anh thực chiến qua trò chuyện & sửa lỗi.
   </footer>
 
   <script>
@@ -211,39 +183,38 @@
       }
     }
 
-    // DỮ LIỆU TỪ VỰNG BÁM SÁT THEO TỪNG CẤP ĐỘ
     const gradeData = {
       1: {
         badge: "CẤP 1 (Tiểu Học)",
-        prompt: "Hãy đặt câu tiếng Anh giới thiệu tên và tuổi của em.",
-        hint: "💡 Cấu trúc: My name is [Tên] and I am [Tuổi] years old.",
+        botIntro: "Hello! I am your English friend. What is your name and how old are you?",
+        botIntroVi: "💬 Chào em! Bạn là người bạn Tiếng Anh của em đây. Em tên gì và bao nhiêu tuổi rồi?",
         vocabs: [
           { word: "Name", ipa: "/neɪm/", read: "Nêm", meaning: "Tên gọi", example: "My name is Qui." },
-          { word: "Years old", ipa: "/jɪəz əʊld/", read: "Y-ơ âu-đơ", meaning: "Số tuổi", example: "I am eight years old." },
-          { word: "Student", ipa: "/ˈstjuː.dənt/", meaning: "Học sinh", read: "Xtiu-đần-tơ", example: "I am a primary student." },
-          { word: "Grade", ipa: "/ɡreɪd/", meaning: "Lớp / Khối lớp", read: "Gơ-rết-đơ", example: "I am in grade 3." }
+          { word: "Years old", ipa: "/jɪəz əʊld/", read: "Y-ơ âu-đơ", meaning: "Số tuổi", example: "I am 8 years old." },
+          { word: "Student", ipa: "/ˈstjuː.dənt/", read: "Xtiu-đần-tơ", meaning: "Học sinh", example: "I am a student." },
+          { word: "Grade", ipa: "/ɡreɪd/", read: "Gơ-rết-đơ", meaning: "Khối lớp", example: "I am in grade 3." }
         ]
       },
       2: {
         badge: "CẤP 2 (THCS)",
-        prompt: "Hãy viết 1 câu bằng tiếng Anh hỏi đường đến siêu thị hoặc bưu điện.",
-        hint: "💡 Cấu trúc: Excuse me, could you tell me the way to [Địa điểm]?",
+        botIntro: "Hi there! I am going to the library. Do you know where the nearest supermarket is?",
+        botIntroVi: "💬 Chào bạn! Mình đang định đi thư viện. Bạn có biết siêu thị gần nhất ở đâu không?",
         vocabs: [
-          { word: "Excuse me", ipa: "/ɪkˈskjuːz miː/", read: "Ích-xkiu-zơ mi", meaning: "Xin lỗi (để hỏi đường)", example: "Excuse me, where is the shop?" },
-          { word: "Way", ipa: "/weɪ/", read: "Quây", meaning: "Con đường, lối đi", example: "Show me the way to school." },
-          { word: "Supermarket", ipa: "/ˈsuː.pəˌmɑː.kɪt/", read: "Xúp-pơ-ma-kết", meaning: "Siêu thị", example: "The supermarket is near here." },
-          { word: "Turn left", ipa: "/tɜːn left/", read: "Tơn lếp-tơ", meaning: "Rẽ trái", example: "Turn left at the corner." }
+          { word: "Excuse me", ipa: "/ɪkˈskjuːz miː/", read: "Ích-xkiu-zơ mi", meaning: "Xin lỗi (hỏi đường)", example: "Excuse me, where is it?" },
+          { word: "Way", ipa: "/weɪ/", read: "Quây", meaning: "Con đường", example: "Show me the way." },
+          { word: "Supermarket", ipa: "/ˈsuː.pəˌmɑː.kɪt/", read: "Xúp-pơ-ma-kết", meaning: "Siêu thị", example: "It is near here." },
+          { word: "Turn left", ipa: "/tɜːn left/", read: "Tơn lếp-tơ", meaning: "Rẽ trái", example: "Turn left at the shop." }
         ]
       },
       3: {
         badge: "CẤP 3 (THPT)",
-        prompt: "Hãy viết 1 câu diễn đạt: 'Tự học mỗi ngày giúp học sinh rèn luyện tính kỷ luật'.",
-        hint: "💡 Cấu trúc: Self-study helps students build self-discipline.",
+        botIntro: "Hello! What is your opinion about self-studying English every day?",
+        botIntroVi: "💬 Xin chào! Quan điểm của bạn thế nào về việc tự học tiếng Anh hằng ngày?",
         vocabs: [
-          { word: "Self-study", ipa: "/ˌselfˈstʌd.i/", read: "Xép-xtiu-đi", meaning: "Việc tự học", example: "Self-study is very effective." },
-          { word: "Discipline", ipa: "/ˈdɪs.ə.plɪn/", read: "Đi-xơ-plin", meaning: "Tính kỷ luật", example: "Build your self-discipline daily." },
-          { word: "Improve", ipa: "/ɪmˈpruːv/", read: "Im-prúp-vơ", meaning: "Cải thiện, phát triển", example: "Practice to improve English." },
-          { word: "Routine", ipa: "/ruːˈtiːn/", read: "Ru-tin", meaning: "Thói quen hằng ngày", example: "A good learning routine." }
+          { word: "Self-study", ipa: "/ˌselfˈstʌd.i/", read: "Xép-xtiu-đi", meaning: "Việc tự học", example: "Self-study is key." },
+          { word: "Discipline", ipa: "/ˈdɪs.ə.plɪn/", read: "Đi-xơ-plin", meaning: "Tính kỷ luật", example: "Build self-discipline." },
+          { word: "Improve", ipa: "/ɪmˈpruːv/", read: "Im-prúp-vơ", meaning: "Cải thiện", example: "Improve every day." },
+          { word: "Routine", ipa: "/ruːˈtiːn/", read: "Ru-tin", meaning: "Thói quen", example: "Daily routine." }
         ]
       }
     };
@@ -263,12 +234,21 @@
 
       const data = gradeData[g];
       document.getElementById('gradeBadge').innerText = data.badge;
-      document.getElementById('promptText').innerText = data.prompt;
-      document.getElementById('hintText').innerText = data.hint;
-      document.getElementById('feedbackBox').classList.add('hidden');
       document.getElementById('vocabDetail').classList.add('hidden');
 
-      // Load lại danh sách từ vựng chuẩn
+      // Reset Khung Chat theo cấp độ
+      const chatBox = document.getElementById('chatBox');
+      chatBox.innerHTML = `
+        <div class="flex items-start space-x-2">
+          <div class="w-7 h-7 rounded-xl bg-indigo-500 flex items-center justify-center text-xs font-bold shrink-0">🤖</div>
+          <div class="bg-slate-900 p-3 rounded-2xl rounded-tl-none border border-slate-800 text-xs space-y-1 max-w-[85%]">
+            <p class="text-white font-semibold">${data.botIntro}</p>
+            <p class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1">${data.botIntroVi}</p>
+          </div>
+        </div>
+      `;
+
+      // Load danh sách từ vựng
       let vocabHtml = data.vocabs.map((v, idx) => `
         <button onclick="showVocabDetail(${g}, ${idx})" 
                 class="bg-slate-900 hover:bg-slate-800 text-indigo-300 font-bold px-3 py-1.5 rounded-xl border border-slate-700 text-xs transition active:scale-95 shadow">
@@ -289,52 +269,83 @@
       document.getElementById('vocabDetail').classList.remove('hidden');
     }
 
-    function checkAnswer() {
-      autoTriggerAffiliate();
-      const inputVal = document.getElementById('userInput').value.trim();
-      const feedbackBox = document.getElementById('feedbackBox');
-
-      if (!inputVal) {
-        alert("Em hãy nhập câu trả lời trước khi bấm sửa lỗi nhé!");
-        return;
+    function handleKeyPress(e) {
+      if (e.key === 'Enter') {
+        sendChatMessage();
       }
+    }
 
-      document.getElementById('userAnswerDisplay').innerText = `"${inputVal}"`;
+    function sendChatMessage() {
+      autoTriggerAffiliate();
+      const inputEl = document.getElementById('chatInput');
+      const text = inputEl.value.trim();
+      if (!text) return;
 
-      if (currentGrade === 1) {
-        // XỬ LÝ LỖI "My name is Quí and eight years old"
-        document.getElementById('suggestedAnswer').innerText = "My name is Quí and I am eight years old.";
-        document.getElementById('phoneticRead').innerText = "🔊 Đọc: Mai nêm xơ Quí en ai em ết y-ơ âu-đơ.";
-        
-        document.getElementById('explainText').innerHTML = `
-          <p class="text-rose-300">• <b class="text-white">Lỗi thiếu từ:</b> Vế sau vế <i class="text-amber-300">"and eight years old"</i> em bị thiếu từ <b>"I"</b> (Tôi) và từ <b>"am"</b> (là/thì).</p>
-          <p class="text-emerald-300">• <b class="text-white">Quy tắc To-Be bắt buộc:</b> Trong tiếng Anh, nói tuổi phải có cấu trúc <b>I + AM + [Số tuổi] + years old</b>.</p>
-          <div class="bg-slate-950 p-2 rounded border border-slate-800 text-[10px] space-y-1 mt-1">
-            <p class="text-amber-400 font-bold">📌 Bảng phân biệt nhanh To-Be (Thì / Là / Ở):</p>
-            <p class="text-slate-300">• <b>I</b> đi với <b>AM</b> $\rightarrow$ <i>I am 8 years old.</i> (Tôi 8 tuổi)</p>
-            <p class="text-slate-300">• <b>He / She / It / Tên 1 người</b> đi với <b>IS</b> $\rightarrow$ <i>My name IS Quí.</i> (Tên tôi LÀ Quí)</p>
-            <p class="text-slate-300">• <b>You / We / They</b> đi với <b>ARE</b> $\rightarrow$ <i>You ARE a student.</i> (Bạn LÀ học sinh)</p>
+      const chatBox = document.getElementById('chatBox');
+
+      // 1. HIỂN THỊ TIN NHẮN HỌC SINH GỬI
+      const userMsgHtml = `
+        <div class="flex items-start justify-end space-x-2">
+          <div class="bg-indigo-600 p-3 rounded-2xl rounded-tr-none text-xs text-white font-medium max-w-[85%] shadow">
+            ${text}
+          </div>
+          <div class="w-7 h-7 rounded-xl bg-slate-800 border border-slate-700 flex items-center justify-center text-xs shrink-0">👦</div>
+        </div>
+      `;
+      chatBox.insertAdjacentHTML('beforeend', userMsgHtml);
+      inputEl.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+      // 2. GIẢ LẬP MÁY PHÂN TÍCH & PHẢN HỒI LẠI
+      setTimeout(() => {
+        let botReply = "";
+        let correctionHtml = "";
+
+        if (currentGrade === 1) {
+          botReply = "Nice to meet you! It's great to talk with you today!";
+          
+          correctionHtml = `
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-amber-500/30 space-y-1.5 text-[11px] mt-1">
+              <div class="flex justify-between items-center">
+                <span class="font-bold text-amber-400">💡 BẠN MÁY SỬA LỖI GIÚP EM:</span>
+                <span class="text-[9px] bg-amber-500/20 text-amber-300 px-1.5 py-0.5 rounded font-bold">Lưu Ý Cú Pháp</span>
+              </div>
+              <p class="text-emerald-300">• <b>Câu chuẩn nhất:</b> "My name is Quí and I am 8 years old."</p>
+              <p class="text-sky-300">• <b>🔊 Cách đọc:</b> Mai nêm xơ Quí en ai em ết y-ơ âu-đơ.</p>
+              <p class="text-slate-300">• <b>Phân tích lỗi:</b> Vế sau em quên từ <b>"I"</b> (tôi) và từ <b>"am"</b> (là/thì). Nhớ quy tắc <b>I đi với AM</b> nhé!</p>
+            </div>
+          `;
+        } else if (currentGrade === 2) {
+          botReply = "Thank you so much! I found the way to the supermarket now!";
+          correctionHtml = `
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/30 space-y-1.5 text-[11px] mt-1">
+              <p class="font-bold text-emerald-400">✓ CÂU CỦA BẠN RẤT TỐT!</p>
+              <p class="text-sky-300">• <b>🔊 Cách đọc chuẩn:</b> Ích-xkiu-zơ mi, cút giu têu mi đơ quây tu đơ xúp-pơ-ma-kết?</p>
+              <p class="text-slate-300">• <b>Mẹo nhớ:</b> Từ <b>"TO"</b> có nghĩa là <i>hướng về/đến</i> địa điểm phía sau.</p>
+            </div>
+          `;
+        } else {
+          botReply = "I completely agree with you! Self-study is key to personal growth.";
+          correctionHtml = `
+            <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/30 space-y-1.5 text-[11px] mt-1">
+              <p class="font-bold text-emerald-400">✓ ĐIỂM NGỮ PHÁP TỐT!</p>
+              <p class="text-sky-300">• <b>🔊 Phát âm:</b> Đây-li xép-xtiu-đi play ơ xru-xơ rol in bưu-đing...</p>
+            </div>
+          `;
+        }
+
+        const botMsgHtml = `
+          <div class="flex items-start space-x-2">
+            <div class="w-7 h-7 rounded-xl bg-indigo-500 flex items-center justify-center text-xs font-bold shrink-0">🤖</div>
+            <div class="bg-slate-900 p-3 rounded-2xl rounded-tl-none border border-slate-800 text-xs space-y-2 max-w-[85%]">
+              <p class="text-white font-semibold">${botReply}</p>
+              ${correctionHtml}
+            </div>
           </div>
         `;
-      } else if (currentGrade === 2) {
-        document.getElementById('suggestedAnswer').innerText = "Excuse me, could you tell me the way to the supermarket?";
-        document.getElementById('phoneticRead').innerText = "🔊 Đọc: Ích-xkiu-zơ mi, cút giu têu mi đơ quây tu đơ xúp-pơ-ma-kết?";
-        
-        document.getElementById('explainText').innerHTML = `
-          <p class="text-emerald-300">• <b class="text-white">Từ "TO" có nghĩa là gì?</b> Từ <b>"to"</b> chỉ hướng chuyển động <i>(đến/hướng về)</i> địa điểm phía sau.</p>
-          <p class="text-slate-300">• Dùng <b>"could you"</b> tỏ thái độ lịch sự hơn khi nhờ người lạ chỉ đường.</p>
-        `;
-      } else {
-        document.getElementById('suggestedAnswer').innerText = "Daily self-study plays a crucial role in building students' self-discipline.";
-        document.getElementById('phoneticRead').innerText = "🔊 Đọc: Đây-li xép-xtiu-đi play ơ xru-xơ rol in bưu-đing xtiu-đần-tơ xép-đi-xơ-plin.";
-        
-        document.getElementById('explainText').innerHTML = `
-          <p class="text-emerald-300">• <b class="text-white">Cấu trúc ăn điểm:</b> <b>Play a crucial role in + V-ing</b> <i>(Đóng vai trò quan trọng trong việc gì)</i>.</p>
-        `;
-      }
-
-      feedbackBox.classList.remove('hidden');
-      feedbackBox.scrollIntoView({ behavior: 'smooth' });
+        chatBox.insertAdjacentHTML('beforeend', botMsgHtml);
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 600);
     }
 
     // Khởi tạo chạy mặc định Cấp 1
