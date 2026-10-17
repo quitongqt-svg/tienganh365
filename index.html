@@ -28,8 +28,9 @@
         <span class="text-[9px] text-slate-400 font-medium">Luyện Tiếng Anh & Trò Chuyện Tương Tác</span>
       </div>
     </div>
-    <span class="text-[9px] bg-indigo-500/10 text-indigo-400 font-bold px-2.5 py-1 rounded-full border border-indigo-500/30">
-      ⚡ Học Qua Trò Chuyện
+    <!-- HIỂN THỊ SỐ LƯỢT CHAT HÔM NAY -->
+    <span id="limitBadge" class="text-[9px] bg-amber-500/20 text-amber-300 font-extrabold px-2.5 py-1 rounded-full border border-amber-500/30">
+      ⚡ Lượt chat: <span id="chatCountDisplay">5</span>/5
     </span>
   </header>
 
@@ -43,10 +44,10 @@
           Cho Học Sinh Cấp 1 • 2 • 3
         </span>
         <h1 class="text-base font-extrabold text-white tracking-tight leading-snug">
-          Trò Chuyện Với Bạn Máy <br/><span class="text-indigo-400">Trả Lối, Sửa Lỗi & Hỏi Tiếp</span>
+          Trò Chuyện Với Bạn Máy <br/><span class="text-indigo-400">Trả Lời, Sửa Lỗi & Phát Âm Voice</span>
         </h1>
         <p class="text-[11px] text-slate-300 leading-relaxed pt-0.5">
-          Nhắn tin tiếng Anh thoải mái. Bạn máy sẽ trả lời, uốn nắn và hỏi lại để em rèn phản xạ!
+          Nhắn tin thoải mái. Hết lượt chat? Bấm nhận thêm lượt miễn phí từ Shopee nhé!
         </p>
       </div>
     </div>
@@ -65,7 +66,7 @@
       </div>
     </div>
 
-    <!-- KHU VỰC 2: TỪ VỰNG GỢI Ý HÀNG DỌC (HIỂN THỊ SẴN TỪ - CÁCH ĐỌC - NGHĨA) -->
+    <!-- KHU VỰC 2: TỪ VỰNG GỢI Ý HÀNG DỌC -->
     <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2.5 border border-indigo-500/20">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
         <label class="text-xs font-bold text-slate-200 uppercase tracking-wider flex items-center space-x-1.5">
@@ -75,13 +76,12 @@
         <span class="text-[9px] text-indigo-400 font-bold bg-indigo-500/10 px-2 py-0.5 rounded">Hiện sẵn nghĩa</span>
       </div>
 
-      <!-- Danh sách từ vựng xếp hàng dọc -->
       <div id="vocabVerticalList" class="space-y-2 pt-1">
         <!-- Load dữ liệu tự động -->
       </div>
     </div>
 
-    <!-- KHU VỰC 3: GIAO DIỆN TRÒ CHUYỆN & SỬA LỖI TRỰC TIẾP (CHAT INTERACTIVE) -->
+    <!-- KHU VỰC 3: GIAO DIỆN TRÒ CHUYỆN & SỬA LỖI TRỰC TIẾP -->
     <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-3 border border-sky-500/40">
       <div class="flex justify-between items-center border-b border-slate-800 pb-2">
         <div class="flex items-center space-x-2">
@@ -95,22 +95,32 @@
 
       <!-- KHUNG CHAT HIỂN THỊ TIN NHẮN -->
       <div id="chatBox" class="space-y-3 max-h-80 overflow-y-auto p-1 pr-1">
-        <!-- Lời chào đầu của bạn máy -->
+        <!-- Tin nhắn khởi tạo -->
+      </div>
+
+      <!-- THÔNG BÁO HẾT LƯỢT + NÚT TĂNG LƯỢT SHOPEE -->
+      <div id="outOfLimitBox" class="hidden bg-amber-500/10 border border-amber-500/30 p-3 rounded-xl text-center space-y-2">
+        <p class="text-xs font-bold text-amber-300">⚠️ Em đã dùng hết lượt chat miễn phí!</p>
+        <p class="text-[10px] text-slate-300">Bấm nút bên dưới để xem bộ sách <b>"Bé chinh phục 2000 từ vựng"</b> trên Shopee & nhận ngay <b>+5 Lượt Chat Mới</b> nhé:</p>
+        <button onclick="addMoreChatLimit()" 
+                class="w-full py-2.5 bg-gradient-to-r from-amber-400 to-orange-500 text-slate-950 font-extrabold text-xs rounded-xl shadow-lg hover:brightness-110 active:scale-95 transition flex items-center justify-center gap-1.5">
+          🎁 Tăng +5 Lượt Chat Ngay (Mở Shopee)
+        </button>
       </div>
 
       <!-- KHUNG NHẬP TIN NHẮN TRÒ CHUYỆN -->
-      <div class="pt-1 flex items-center space-x-2">
+      <div id="chatInputArea" class="pt-1 flex items-center space-x-2">
         <input id="chatInput" type="text" placeholder="Gõ câu trả lời tiếng Anh vào đây..."
                onkeypress="handleKeyPress(event)"
                class="flex-1 bg-slate-900 border border-slate-700 rounded-xl px-3 py-2.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 transition" />
-        <button onclick="sendChatMessage()" 
+        <button id="sendBtn" onclick="sendChatMessage()" 
                 class="bg-indigo-500 hover:bg-indigo-400 text-slate-950 px-3.5 py-2.5 rounded-xl font-extrabold text-xs shadow-lg transition active:scale-95 shrink-0">
           Gửi 🚀
         </button>
       </div>
     </div>
 
-    <!-- KHU VỰC DỤNG CỤ HỌC TẬP KHUYÊN DÙNG (2 LINK SHOPEE AFFILIATE) -->
+    <!-- KHU VỰC DỤNG CỤ HỌC TẬP KHUYÊN DÙNG (TÍCH HỢP LINK MỚI CỦA ANH QUÍ) -->
     <div class="glass-card rounded-2xl p-3.5 shadow-xl space-y-2 border border-indigo-500/30">
       <div class="font-extrabold text-white text-[11px] flex items-center justify-between">
         <span>📚 Dụng Cụ Hỗ Trợ Học Tiếng Anh Cần Thiết:</span>
@@ -118,6 +128,19 @@
       </div>
 
       <div class="grid grid-cols-1 gap-2 pt-1">
+        <!-- LINK MỚI DÀNH CHO BÉ CHINH PHỤC 2000 TỪ VỰNG -->
+        <a href="https://s.shopee.vn/BUdYOZ44I" target="_blank" rel="noopener noreferrer" onclick="autoTriggerAffiliate()"
+           class="flex items-center justify-between bg-slate-800/80 hover:bg-slate-800 p-2.5 rounded-lg border border-indigo-500/40 transition active:scale-95">
+          <div class="flex items-center space-x-2">
+            <span class="text-base">📕</span>
+            <div>
+              <div class="text-[11px] font-bold text-amber-300">Bé Chinh Phục 2000 Từ Vựng Tiếng Anh</div>
+              <div class="text-[9px] text-slate-400">Hình ảnh sinh động, nạp từ vựng tự nhiên cho bé</div>
+            </div>
+          </div>
+          <span class="text-[10px] bg-amber-400 text-slate-950 font-black px-2 py-1 rounded shrink-0">Xem Shopee →</span>
+        </a>
+
         <a href="https://s.shopee.vn/LnxoGaYaQ" target="_blank" rel="noopener noreferrer" onclick="autoTriggerAffiliate()"
            class="flex items-center justify-between bg-slate-800/80 hover:bg-slate-800 p-2.5 rounded-lg border border-slate-700 transition active:scale-95">
           <div class="flex items-center space-x-2">
@@ -152,12 +175,38 @@
 
   <script>
     let currentGrade = 1;
-    let chatStep = 1; // Đếm bước trò chuyện
+    let chatStep = 1;
+    
+    let remainingChats = parseInt(localStorage.getItem('eng365_chats_left') || '5');
 
+    // DANH SÁCH LINK TIẾP THỊ SHOPEE (TÍCH HỢP LINK 2000 TỪ VỰNG MỚI)
     const affLinks = [
+      "https://s.shopee.vn/BUdYOZ44I",
       "https://s.shopee.vn/LnxoGaYaQ",
       "https://s.shopee.vn/9KimWsLRKD"
     ];
+
+    function updateLimitUI() {
+      document.getElementById('chatCountDisplay').innerText = remainingChats;
+      localStorage.setItem('eng365_chats_left', remainingChats.toString());
+
+      if (remainingChats <= 0) {
+        document.getElementById('outOfLimitBox').classList.remove('hidden');
+        document.getElementById('chatInputArea').classList.add('opacity-50', 'pointer-events-none');
+        document.getElementById('chatInput').placeholder = "Đã hết lượt chat. Bấm nút trên để tăng lượt!";
+      } else {
+        document.getElementById('outOfLimitBox').classList.add('hidden');
+        document.getElementById('chatInputArea').classList.remove('opacity-50', 'pointer-events-none');
+        document.getElementById('chatInput').placeholder = "Gõ câu trả lời tiếng Anh vào đây...";
+      }
+    }
+
+    function addMoreChatLimit() {
+      const randomLink = affLinks[Math.floor(Math.random() * affLinks.length)];
+      window.open(randomLink, '_blank');
+      remainingChats += 5;
+      updateLimitUI();
+    }
 
     function autoTriggerAffiliate() {
       const hasOpened = localStorage.getItem('eng365_auto_aff');
@@ -168,7 +217,16 @@
       }
     }
 
-    // DỮ LIỆU TỪ VỰNG XẾP HÀNG DỌC CÓ NGHĨA
+    function speakText(text) {
+      if ('speechSynthesis' in window) {
+        window.speechSynthesis.cancel();
+        const utterance = new SpeechSynthesisUtterance(text);
+        utterance.lang = 'en-US';
+        utterance.rate = 0.85;
+        window.speechSynthesis.speak(utterance);
+      }
+    }
+
     const gradeData = {
       1: {
         badge: "CẤP 1 (Tiểu Học)",
@@ -176,9 +234,9 @@
         botIntroVi: "💬 Chào em! Bạn là người bạn Tiếng Anh đây. Em tên gì và bao nhiêu tuổi rồi?",
         vocabs: [
           { word: "Name", read: "Nêm", meaning: "Tên gọi" },
+          { word: "Forty", read: "Pho-ti", meaning: "Số 40 (chú ý viết không u)" },
           { word: "Years old", read: "Y-ơ âu-đơ", meaning: "Số tuổi" },
-          { word: "Student", read: "Xtiu-đần-tơ", meaning: "Học sinh" },
-          { word: "Favorite", read: "Phay-vơ-rít", meaning: "Yêu thích nhất" }
+          { word: "Student", read: "Xtiu-đần-tơ", meaning: "Học sinh" }
         ]
       },
       2: {
@@ -222,19 +280,20 @@
       const data = gradeData[g];
       document.getElementById('gradeBadge').innerText = data.badge;
 
-      // Reset Khung Chat theo cấp độ
       const chatBox = document.getElementById('chatBox');
       chatBox.innerHTML = `
         <div class="flex items-start space-x-2">
           <div class="w-7 h-7 rounded-xl bg-indigo-500 flex items-center justify-center text-xs font-bold shrink-0">🤖</div>
-          <div class="bg-slate-900 p-3 rounded-2xl rounded-tl-none border border-slate-800 text-xs space-y-1 max-w-[85%]">
+          <div class="bg-slate-900 p-3 rounded-2xl rounded-tl-none border border-slate-800 text-xs space-y-2 max-w-[85%]">
             <p class="text-white font-semibold">${data.botIntro}</p>
             <p class="text-[10px] text-slate-400 border-t border-slate-800/80 pt-1">${data.botIntroVi}</p>
+            <button onclick="speakText('${data.botIntro}')" class="bg-indigo-500/20 text-indigo-300 font-bold px-2 py-0.5 rounded text-[10px] flex items-center gap-1 hover:bg-indigo-500/30 transition">
+              🔊 Nghe bạn máy nói
+            </button>
           </div>
         </div>
       `;
 
-      // Load Từ vựng Hàng Dọc (Hiển thị Từ - Đọc - Nghĩa)
       let vocabHtml = data.vocabs.map(v => `
         <div class="flex items-center justify-between bg-slate-900/90 p-2.5 rounded-xl border border-slate-800 text-xs">
           <div class="flex items-center space-x-2">
@@ -245,6 +304,8 @@
         </div>
       `).join('');
       document.getElementById('vocabVerticalList').innerHTML = vocabHtml;
+
+      updateLimitUI();
     }
 
     function handleKeyPress(e) {
@@ -254,14 +315,21 @@
     }
 
     function sendChatMessage() {
+      if (remainingChats <= 0) {
+        updateLimitUI();
+        return;
+      }
+
       autoTriggerAffiliate();
       const inputEl = document.getElementById('chatInput');
       const text = inputEl.value.trim();
       if (!text) return;
 
+      remainingChats--;
+      updateLimitUI();
+
       const chatBox = document.getElementById('chatBox');
 
-      // 1. HIỂN THỊ TIN NHẮN HỌC SINH
       const userMsgHtml = `
         <div class="flex items-start justify-end space-x-2">
           <div class="bg-indigo-600 p-3 rounded-2xl rounded-tr-none text-xs text-white font-medium max-w-[85%] shadow">
@@ -274,25 +342,34 @@
       inputEl.value = "";
       chatBox.scrollTop = chatBox.scrollHeight;
 
-      // 2. MÁY TRẢ LỜI, SỬA LỖI VÀ HỎI TIẾP CÂU NỐI TIẾP
       setTimeout(() => {
         let botReply = "";
         let botQuestion = "";
         let botQuestionVi = "";
         let correctionHtml = "";
 
+        let nameMatch = text.match(/(?:am|is)\s+([A-ZÀ-Ỹa-zà-ỹ]+)/i);
+        let detectedName = nameMatch ? nameMatch[1] : "friend";
+
+        let hasFourtySpellingError = /fourty/i.test(text);
+
         if (currentGrade === 1) {
           if (chatStep === 1) {
-            botReply = "Nice to meet you! It's great to talk with you today!";
+            botReply = `Nice to meet you, ${detectedName}! It's great to talk with you today!`;
             botQuestion = "What is your favorite color, blue or red?";
             botQuestionVi = "💬 Màu sắc yêu thích của em là gì, màu xanh hay màu đỏ?";
-            
+
+            let spellNote = hasFourtySpellingError 
+              ? `<p class="text-rose-300">• <b>Lỗi chính tả nhẹ:</b> Số 40 viết chuẩn tiếng Anh là <b>"forty"</b> (không có chữ <i>u</i>), không phải <i>"fourty"</i> nhé!</p>`
+              : ``;
+
             correctionHtml = `
-              <div class="bg-slate-950 p-2.5 rounded-xl border border-amber-500/30 space-y-1 text-[11px] mt-1">
-                <p class="font-bold text-amber-400">💡 SỬA LỖI GIÚP EM:</p>
-                <p class="text-emerald-300">• <b>Câu chuẩn nhất:</b> "My name is Quí and I am 8 years old."</p>
-                <p class="text-sky-300">• <b>🔊 Cách đọc:</b> Mai nêm xơ Quí en ai em ết y-ơ âu-đơ.</p>
-                <p class="text-slate-300">• <b>Lỗi thiếu:</b> Em quên từ <b>"I"</b> (tôi) và <b>"am"</b> (là/thì). Nhớ quy tắc <b>I đi với AM</b> nhé!</p>
+              <div class="bg-slate-950 p-2.5 rounded-xl border border-amber-500/30 space-y-1.5 text-[11px] mt-1">
+                <p class="font-bold text-amber-400">💡 BẠN MÁY SỬA LỖI GIÚP EM:</p>
+                <p class="text-emerald-300">• <b>Câu chuẩn nhất:</b> "My name is ${detectedName} and I am <b>forty</b> years old."</p>
+                <p class="text-sky-300">• <b>🔊 Cách đọc:</b> Mai nêm xơ ${detectedName} en ai em <b>pho-ti</b> y-ơ âu-đơ.</p>
+                ${spellNote}
+                <p class="text-slate-300">• <b>Mẹo nhớ:</b> Luôn dùng cấu trúc <b>I am + [số tuổi] + years old</b> khi nói về tuổi nhé!</p>
               </div>
             `;
             chatStep = 2;
@@ -300,11 +377,11 @@
             botReply = "Wow, that's a wonderful choice! I like it too.";
             botQuestion = "Do you like playing football or reading books?";
             botQuestionVi = "💬 Em có thích đá bóng hay đọc sách không nào?";
-            
+
             correctionHtml = `
               <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/30 space-y-1 text-[11px] mt-1">
                 <p class="font-bold text-emerald-400">✓ EM TRẢ LỜI RẤT TỐT!</p>
-                <p class="text-slate-300">• Tiếp tục phát huy thói quen rèn luyện phản xạ này nhé!</p>
+                <p class="text-slate-300">• Phản xạ đặt câu rất tự nhiên rồi đó!</p>
               </div>
             `;
           }
@@ -312,24 +389,25 @@
           botReply = "Thank you so much! I found the way now.";
           botQuestion = "What are you going to buy at the supermarket today?";
           botQuestionVi = "💬 Hôm nay bạn định mua gì ở siêu thị thế?";
-          
+
           correctionHtml = `
             <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/30 space-y-1 text-[11px] mt-1">
-              <p class="font-bold text-emerald-400">✓ CÂU CỦA BẠN RẤT CHUẨN XÁC!</p>
-              <p class="text-sky-300">• <b>🔊 Cách đọc:</b> Ích-xkiu-zơ mi, cút giu têu mi đơ quây tu đơ xúp-pơ-ma-kết?</p>
+              <p class="font-bold text-emerald-400">✓ CÂU RẤT CHUẨN XÁC!</p>
             </div>
           `;
         } else {
           botReply = "I completely agree with you! Self-study is key to personal development.";
           botQuestion = "How many hours do you spend self-studying every day?";
           botQuestionVi = "💬 Mỗi ngày bạn dành khoảng bao nhiêu tiếng để tự học?";
-          
+
           correctionHtml = `
             <div class="bg-slate-950 p-2.5 rounded-xl border border-emerald-500/30 space-y-1 text-[11px] mt-1">
-              <p class="font-bold text-emerald-400">✓ ĐIỂM NGỮ PHÁP RẤT TỐT!</p>
+              <p class="font-bold text-emerald-400">✓ CẤU TRÚC NGỮ PHÁP TỐT!</p>
             </div>
           `;
         }
+
+        const fullSpeakText = `${botReply} ${botQuestion}`;
 
         const botMsgHtml = `
           <div class="flex items-start space-x-2">
@@ -338,20 +416,25 @@
               <p class="text-white font-semibold">${botReply}</p>
               ${correctionHtml}
               
-              <!-- CÂU HỎI TIẾP TỤC ĐỂ BÉ PHẢN XẠ -->
               <div class="border-t border-slate-800 pt-2 space-y-1">
                 <p class="text-amber-300 font-extrabold">👉 ${botQuestion}</p>
                 <p class="text-[10px] text-slate-400">${botQuestionVi}</p>
               </div>
+
+              <button onclick="speakText('${fullSpeakText.replace(/'/g, "\\'")}')" 
+                      class="bg-indigo-500/20 text-indigo-300 font-bold px-2 py-1 rounded text-[10px] flex items-center gap-1 hover:bg-indigo-500/30 transition">
+                🔊 Nghe bạn máy nói
+              </button>
             </div>
           </div>
         `;
         chatBox.insertAdjacentHTML('beforeend', botMsgHtml);
         chatBox.scrollTop = chatBox.scrollHeight;
+
+        speakText(fullSpeakText);
       }, 600);
     }
 
-    // Khởi tạo chạy mặc định Cấp 1
     setGrade(1);
   </script>
 
