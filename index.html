@@ -128,7 +128,6 @@
       </div>
 
       <div class="grid grid-cols-1 gap-2 pt-1">
-        <!-- LINK MỚI DÀNH CHO BÉ CHINH PHỤC 2000 TỪ VỰNG -->
         <a href="https://s.shopee.vn/BUdYOZ44I" target="_blank" rel="noopener noreferrer" onclick="autoTriggerAffiliate()"
            class="flex items-center justify-between bg-slate-800/80 hover:bg-slate-800 p-2.5 rounded-lg border border-indigo-500/40 transition active:scale-95">
           <div class="flex items-center space-x-2">
@@ -176,10 +175,8 @@
   <script>
     let currentGrade = 1;
     let chatStep = 1;
-    
     let remainingChats = parseInt(localStorage.getItem('eng365_chats_left') || '5');
 
-    // DANH SÁCH LINK TIẾP THỊ SHOPEE (TÍCH HỢP LINK 2000 TỪ VỰNG MỚI)
     const affLinks = [
       "https://s.shopee.vn/BUdYOZ44I",
       "https://s.shopee.vn/LnxoGaYaQ",
@@ -217,13 +214,23 @@
       }
     }
 
+    // HÀM PHÁT ÂM TIẾNG ANH SAFARI / IOS
     function speakText(text) {
       if ('speechSynthesis' in window) {
         window.speechSynthesis.cancel();
-        const utterance = new SpeechSynthesisUtterance(text);
-        utterance.lang = 'en-US';
-        utterance.rate = 0.85;
-        window.speechSynthesis.speak(utterance);
+        let msg = new SpeechSynthesisUtterance();
+        msg.text = text;
+        msg.lang = 'en-US';
+        msg.rate = 0.85;
+        
+        // Fix phát âm trên Safari iPhone
+        let voices = window.speechSynthesis.getVoices();
+        let usVoice = voices.find(v => v.lang.includes('en-US') || v.lang.includes('en_US'));
+        if (usVoice) msg.voice = usVoice;
+
+        window.speechSynthesis.speak(msg);
+      } else {
+        alert("Thiết bị của bạn không hỗ trợ tính năng phát âm tự động.");
       }
     }
 
@@ -348,8 +355,12 @@
         let botQuestionVi = "";
         let correctionHtml = "";
 
-        let nameMatch = text.match(/(?:am|is)\s+([A-ZÀ-Ỹa-zà-ỹ]+)/i);
-        let detectedName = nameMatch ? nameMatch[1] : "friend";
+        // HÀM BÓC TÁCH TÊN BẤT KỲ CÚ PHÁP NÀO (KỂ CẢ THIẾU IS / AM)
+        let detectedName = "Qui"; // Mặc định Qui
+        let nameMatch = text.match(/(?:name|am|is|I)\s+([A-ZÀ-Ỹa-zà-ỹ]+)/i);
+        if (nameMatch && !/and|fourty|forty|year|years|old/i.test(nameMatch[1])) {
+          detectedName = nameMatch[1];
+        }
 
         let hasFourtySpellingError = /fourty/i.test(text);
 
@@ -369,7 +380,7 @@
                 <p class="text-emerald-300">• <b>Câu chuẩn nhất:</b> "My name is ${detectedName} and I am <b>forty</b> years old."</p>
                 <p class="text-sky-300">• <b>🔊 Cách đọc:</b> Mai nêm xơ ${detectedName} en ai em <b>pho-ti</b> y-ơ âu-đơ.</p>
                 ${spellNote}
-                <p class="text-slate-300">• <b>Mẹo nhớ:</b> Luôn dùng cấu trúc <b>I am + [số tuổi] + years old</b> khi nói về tuổi nhé!</p>
+                <p class="text-slate-300">• <b>Mẹo nhớ:</b> Luôn cần từ <b>"is"</b> (My name <b>is</b> ${detectedName}) và <b>I am + [tuổi] + years old</b> nhé!</p>
               </div>
             `;
             chatStep = 2;
@@ -433,6 +444,13 @@
 
         speakText(fullSpeakText);
       }, 600);
+    }
+
+    // Nạp sẵn danh sách giọng nói cho Safari/iOS khi vừa mở trang
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.onvoiceschanged = function() {
+        window.speechSynthesis.getVoices();
+      };
     }
 
     setGrade(1);
